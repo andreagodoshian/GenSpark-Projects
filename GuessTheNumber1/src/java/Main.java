@@ -3,9 +3,12 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        boolean play = true;
+        boolean keepPlaying = true;
+        String rawInput;
+        int guessMain;
 
-        Scanner input = new Scanner(System.in);
+        GameFunctions game = new GameFunctions();
+        var input = new Scanner(System.in);
 
         System.out.println("""
                 Welcome to 'Guess The Number!'
@@ -14,52 +17,61 @@ public class Main {
                 
                 *~please enter name below~*""");
 
-        String name = input.next();
+        game.setName(input.next());
+        String name = game.getName();
 
-        while (play) {
+        while (keepPlaying) {
 
             System.out.println("\nReady to play, " + name + "?" +
                     "\nI am thinking of a number between 1 and 20...");
 
             Random r = new Random();
             int secretNumber = r.nextInt(1, 21);
+            game.setStatus(secretNumber);
 
             int count = 0;
 
             while (count < 6) {
+
                 System.out.println("Please enter your guess below: ");
-                int guess = input.nextInt();
 
-                if (guess < secretNumber) {
-                    System.out.println("Too low!\n");
-                    count++;
-                } else if (guess > secretNumber) {
-                    System.out.println("Too high!\n");
-                    count++;
-                } else if (guess == secretNumber) {
-                    count++;
+                while (true) {
+                    rawInput = game.setDigit(input.next());
 
-                    if (count != 1){
-                        System.out.println("You won! Good job, " + name + "!" +
-                                "\nAnd it only took you " + count + " guesses.\n");
-                        break;
+                    if (rawInput.equals("Please enter a digit.")) {
+                        System.out.println(rawInput);
                     } else {
-                        System.out.println("You won! Good job, " + name + "!" +
-                                "\nAnd it only took you " + count + " guess.\n");
+                        guessMain = game.getDigit();
                         break;
                     }
                 }
+
+                count++;
+
+                if (game.getStatus(count).equals("You won!")){
+                    if (count != 1){
+                        System.out.println("You won! Good job, " + name + "!" +
+                                "\nAnd it only took you " + count + " guesses.\n");
+                    } else {
+                        System.out.println("You won! Good job, " + name + "!" +
+                                "\nAnd it only took you " + count + " guess.\n");
+                    }
+                } else {
+                    System.out.println(game.getStatus(count));
+                }
+
             }
 
             System.out.println("""
             Game over!
             Would you like to play again? (y or n)""");
-            String keepPlaying = input.next();
+            String moreGames = input.next();
 
-            if (!keepPlaying.equals("y")){
+            if (!moreGames.equals("y")){
                 System.out.println("Thanks for playing! Goodbye.");
-                play = false;
+                keepPlaying = false;
             }
+
         }
     }
 }
