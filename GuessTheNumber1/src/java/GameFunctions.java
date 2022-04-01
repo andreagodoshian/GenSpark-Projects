@@ -16,6 +16,11 @@ public class GameFunctions {
         this.secret = secret;
     }
 
+    // this one is for testing
+    public int getAnswer(){
+        return secret;
+    }
+
     public String setGuess(String raw) {
         try {
             guess = Integer.parseInt(raw);
