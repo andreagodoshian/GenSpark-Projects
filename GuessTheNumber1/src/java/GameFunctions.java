@@ -12,7 +12,11 @@ public class GameFunctions {
         return name;
     }
 
-    public String setDigit(String raw) {
+    public void setAnswer(int secret){
+        this.secret = secret;
+    }
+
+    public String setGuess(String raw) {
         try {
             guess = Integer.parseInt(raw);
             return "Works!";
@@ -21,21 +25,17 @@ public class GameFunctions {
         }
     }
 
-    public int getDigit(){
+    public int getGuess(){
         return guess;
     }
 
-    public void setStatus(int secret){
-        this.secret = secret;
-    }
-
-    public String getStatus(int count){
+    public String getStatus(int guess){
         if (guess < secret) {
-            winOrLose = "Too low!\n";
+            winOrLose = "Too low!";
         } else if (guess > secret) {
-            winOrLose = "Too high!\n";
+            winOrLose = "Too high!";
         } else if (guess == secret) {
-            winOrLose = "You won!\n";
+            winOrLose = "You won!";
         }
         return winOrLose;
     }

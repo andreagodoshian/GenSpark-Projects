@@ -3,7 +3,7 @@ public class CaveChoice {
     private int choice;
     private String specificCave;
 
-    public String getDigit(String raw) {
+    public String chooseCave(String raw) {
         try {
             choice = Integer.parseInt(raw);
             return "Works!";
@@ -12,6 +12,7 @@ public class CaveChoice {
         }
     }
 
+    // this function is primarily for testing
     public void setCave(int choice){
         this.choice = choice;
     }

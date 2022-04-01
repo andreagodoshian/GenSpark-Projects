@@ -3,12 +3,12 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
+        var input = new Scanner(System.in);
+        GameFunctions compileMethods = new GameFunctions();
         boolean keepPlaying = true;
         String rawInput;
-        int guessMain;
+        int currentGuess;
 
-        GameFunctions game = new GameFunctions();
-        var input = new Scanner(System.in);
 
         System.out.println("""
                 Welcome to 'Guess The Number!'
@@ -17,8 +17,8 @@ public class Main {
                 
                 *~please enter name below~*""");
 
-        game.setName(input.next());
-        String name = game.getName();
+        compileMethods.setName(input.next());
+        String name = compileMethods.getName();
 
         while (keepPlaying) {
 
@@ -27,7 +27,7 @@ public class Main {
 
             Random r = new Random();
             int secretNumber = r.nextInt(1, 21);
-            game.setStatus(secretNumber);
+            compileMethods.setAnswer(secretNumber);
 
             int count = 0;
 
@@ -35,29 +35,29 @@ public class Main {
 
                 System.out.println("Please enter your guess below: ");
 
+                // ensuring the guess is a digit
                 while (true) {
-                    rawInput = game.setDigit(input.next());
+                    rawInput = compileMethods.setGuess(input.next());
 
                     if (rawInput.equals("Please enter a digit.")) {
                         System.out.println(rawInput);
-                    } else {
-                        guessMain = game.getDigit();
-                        break;
-                    }
+                    } else {break;}
                 }
 
+                // count increments, prior to "victory"
                 count++;
 
-                if (game.getStatus(count).equals("You won!")){
-                    if (count != 1){
-                        System.out.println("You won! Good job, " + name + "!" +
-                                "\nAnd it only took you " + count + " guesses.\n");
-                    } else {
-                        System.out.println("You won! Good job, " + name + "!" +
-                                "\nAnd it only took you " + count + " guess.\n");
-                    }
+                // retrieve the guess
+                currentGuess = compileMethods.getGuess();
+
+
+                // check for victory
+                if (compileMethods.getStatus(currentGuess).equals("You won!")){
+                    System.out.println("You won! Good job, " + name + "!" +
+                            "\nAnd it only took you " + count + " guesses.\n");
+                    break;
                 } else {
-                    System.out.println(game.getStatus(count));
+                    System.out.println(compileMethods.getStatus(currentGuess));
                 }
 
             }

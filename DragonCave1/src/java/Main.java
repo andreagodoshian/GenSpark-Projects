@@ -2,9 +2,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args){
 
-        CaveChoice chooseWisely = new CaveChoice();
         var input = new Scanner(System.in);
-
+        CaveChoice compileMethods = new CaveChoice();
         String rawInput;
 
         System.out.println("""
@@ -21,7 +20,7 @@ public class Main {
 
 
         while (true){
-                rawInput = chooseWisely.getDigit(input.next());
+                rawInput = compileMethods.chooseCave(input.next());
 
                 if (rawInput.equals("Please enter a digit.")){
                     System.out.println(rawInput);
@@ -35,7 +34,7 @@ public class Main {
                 It is dark and spooky...""");
 
 
-        String printCave = chooseWisely.getCave();
+        String printCave = compileMethods.getCave();
         System.out.println(printCave);
 
     }

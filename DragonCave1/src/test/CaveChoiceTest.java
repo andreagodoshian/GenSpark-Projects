@@ -14,11 +14,11 @@ class CaveChoiceTest {
     }
 
     @Test
-    void getDigit() {
-        assertEquals("Works!", thisIsATest.getDigit("1"));
-        assertEquals("Works!", thisIsATest.getDigit("76"));
-        assertEquals("Please enter a digit.", thisIsATest.getDigit("a"));
-        assertEquals("Please enter a digit.", thisIsATest.getDigit("$"));
+    void chooseCave() {
+        assertEquals("Works!", thisIsATest.chooseCave("1"));
+        assertEquals("Works!", thisIsATest.chooseCave("76"));
+        assertEquals("Please enter a digit.", thisIsATest.chooseCave("a"));
+        assertEquals("Please enter a digit.", thisIsATest.chooseCave("$8"));
     }
 
     @Test
