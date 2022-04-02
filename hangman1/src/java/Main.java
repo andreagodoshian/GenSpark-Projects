@@ -6,7 +6,10 @@ public class Main {
 
         System.out.println("""
                 Welcome to the game of Hangman!
-                You have six lives. Good luck.""");
+                You have six lives. Good luck.
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                
+                """);
 
         /////////////////////////////
 
@@ -17,7 +20,7 @@ public class Main {
             Scanner input = new Scanner(System.in);
             Hangman game = new Hangman();
             SecretWord generate = new SecretWord();
-            // DrawGallows picture = new DrawGallows();
+            DrawGallows pic = new DrawGallows();
 
             generate.setSecretWord();
             String answer = generate.getSecretWord();
@@ -27,9 +30,9 @@ public class Main {
             int lives = 6;
 
             while (true) {
-                System.out.println("""
-                        *************************
-                        Please enter your guess below""");
+                pic.drawHangman(lives);
+
+                System.out.println("\nPlease enter your guess below");
 
                 String guess = input.next().toLowerCase();
 
