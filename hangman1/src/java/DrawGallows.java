@@ -7,14 +7,12 @@ public class DrawGallows {
                             |
                             |
                             |
-                            |
                             *************""");
         }
         else if(l == 5) {
             System.out.println("""
                             |----------
                             |    O
-                            |
                             |
                             |
                             |
@@ -27,7 +25,6 @@ public class DrawGallows {
                             |    |
                             |
                             |
-                            |
                             *************""");
         }
         else if(l == 3) {
@@ -35,7 +32,6 @@ public class DrawGallows {
                             |----------
                             |    O
                             |   -|
-                            |
                             |
                             |
                             *************""");
@@ -47,7 +43,6 @@ public class DrawGallows {
                             |   -|-
                             |
                             |
-                            |
                             *************""");
         }
         else if(l == 1) {
@@ -57,7 +52,6 @@ public class DrawGallows {
                             |   -|-
                             |   |
                             |
-                            |
                             *************""");
         }
         else{
@@ -66,7 +60,6 @@ public class DrawGallows {
                             |    O
                             |   -|-
                             |   | |
-                            |
                             |
                             *************""");
         }

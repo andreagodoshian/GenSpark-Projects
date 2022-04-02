@@ -5,10 +5,10 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException {
 
         System.out.println("""
+                
                 Welcome to the game of Hangman!
                 You have six lives. Good luck.
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                
                 """);
 
         /////////////////////////////
@@ -31,9 +31,10 @@ public class Main {
 
             while (true) {
                 pic.drawHangman(lives);
+                System.out.println("Already guessed: " + game.returnBoneyard());
+                System.out.println("The word: " + game.showProgress());
 
                 System.out.println("\nPlease enter your guess below");
-
                 String guess = input.next().toLowerCase();
 
                 while (guess.length() != 1 || Character.isDigit(guess.charAt(0))) {
@@ -41,35 +42,32 @@ public class Main {
                     guess = input.next().toLowerCase();
                 }
 
-                boolean alreadyGuessed = game.dogHouse(guess.charAt(0));
+                boolean contains = game.checkBoneyard(guess.charAt(0));
 
-                while (alreadyGuessed){
+                while (contains){
                         System.out.println("You already guessed that. Try again.");
                         guess = input.next().toLowerCase();
-                        alreadyGuessed = game.dogHouse(guess.charAt(0));
+                        contains = game.checkBoneyard(guess.charAt(0));
                     }
-
-
-                boolean safe = game.strikeOrNot();
 
                 game.updatePlayersArray();
 
+                boolean safe = game.strikeOrNot();
+
                 if (!safe) {
                     lives--;
-                    System.out.println("Wrong letter.");
                 }
 
-                System.out.println(game.updatedArray());
                 System.out.println("\nLives Left: " + lives);
 
-                boolean solved = game.getStatus();
-
-                if (solved) {
+                if (game.showProgress().equals(game.showAnswer())) {
+                    pic.drawHangman(lives);
                     System.out.println("Congratulations! You found the word.");
                     break;
                 }
 
                 if (lives <= 0) {
+                    pic.drawHangman(lives);
                     System.out.println("You are dead! The correct answer was: " + answer);
                     break;
                 }

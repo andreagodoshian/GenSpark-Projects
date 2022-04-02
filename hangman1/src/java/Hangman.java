@@ -1,31 +1,51 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class Hangman {
     private boolean solved = false;
     private boolean safe;
 
     private char[] secretArray;
-    private char[] usersArray;
+    private char[] progressArray;
 
     private char guess;
-    private ArrayList<Character> listOfMisses = new ArrayList<>();
+    private ArrayList<Character> theBoneyard = new ArrayList<>();
 
-    public void setStage(char[]secretArray){
-        this.secretArray = secretArray;
-        usersArray = new char[secretArray.length];
+    ////////////////////////////////////////////////
 
-        for (int i = 0; i < usersArray.length; i++) {
-            usersArray[i] = '_';
+    public void setStage(char[]answer){
+        this.secretArray = answer;
+
+        progressArray = new char[secretArray.length];
+        for (int i = 0; i < progressArray.length; i++) {
+            progressArray[i] = '_';
         }
     }
 
-    public boolean dogHouse (char guess){
-        this.guess = guess;
+    ////////////////////////////////////////////////
 
-        if (listOfMisses.contains(guess)){
+    public ArrayList<Character> returnBoneyard(){
+        return theBoneyard;
+    }
+
+    public String showProgress() {
+        return Arrays.toString(progressArray);
+    }
+
+    public String showAnswer(){
+        return Arrays.toString(secretArray);
+    }
+
+    ////////////////////////////////////////////////
+
+    public boolean checkBoneyard (char x){
+        this.guess = x;
+
+        List secretList = Arrays.asList(secretArray);
+
+        if (theBoneyard.contains(guess)){
             return true;
-        } else{
-            listOfMisses.add(guess);
+        } else {
+            theBoneyard.add(guess);
             return false;
         }
     }
@@ -33,7 +53,7 @@ public class Hangman {
     public void updatePlayersArray(){
         for (int i = 0; i<secretArray.length; i++){
             if (guess == secretArray[i]){
-                usersArray[i] = secretArray[i];
+                progressArray[i] = secretArray[i];
             }
         }
     }
@@ -49,14 +69,4 @@ public class Hangman {
         return safe;
     }
 
-    public char[] updatedArray(){
-        return usersArray;
-    }
-
-    public boolean getStatus(){
-        if (usersArray.equals(secretArray)){
-            solved = true;
-        }
-        return solved;
-    }
 }
