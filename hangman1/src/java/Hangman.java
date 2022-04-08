@@ -1,7 +1,6 @@
 import java.util.*;
 
 public class Hangman {
-    private boolean solved = false;
     private boolean safe;
 
     private char[] secretArray;
@@ -12,8 +11,8 @@ public class Hangman {
 
     ////////////////////////////////////////////////
 
-    public void setStage(char[]answer){
-        this.secretArray = answer;
+    public void setStage(String answer){
+        this.secretArray = answer.toCharArray();
 
         progressArray = new char[secretArray.length];
         for (int i = 0; i < progressArray.length; i++) {
@@ -40,8 +39,6 @@ public class Hangman {
     public boolean checkBoneyard (char x){
         this.guess = x;
 
-        List secretList = Arrays.asList(secretArray);
-
         if (theBoneyard.contains(guess)){
             return true;
         } else {
@@ -58,7 +55,7 @@ public class Hangman {
         }
     }
 
-    public boolean strikeOrNot(){
+    public boolean safeOrNot(){
         safe = false;
 
         for (int i = 0; i<secretArray.length; i++) {

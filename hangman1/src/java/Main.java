@@ -11,11 +11,15 @@ public class Main {
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 """);
 
-        /////////////////////////////
+        //////////////////////////////////////////
+        /*
+        everything is inside the "while loop,"
+        so it will reset/refresh if the player
+        wants to play another game
+        */
+        //////////////////////////////////////////
 
-        boolean keepPlaying = true;
-
-        while (keepPlaying) {
+        while (true) {
 
             Scanner input = new Scanner(System.in);
             Hangman game = new Hangman();
@@ -24,13 +28,12 @@ public class Main {
 
             generate.setSecretWord();
             String answer = generate.getSecretWord();
-            char[] answerSplit = answer.toCharArray();
-            game.setStage(answerSplit);
 
+            game.setStage(answer);
             int lives = 6;
 
             while (true) {
-                pic.drawHangman(lives);
+                System.out.println(pic.drawHangman(lives));
                 System.out.println("Already guessed: " + game.returnBoneyard());
                 System.out.println("The word: " + game.showProgress());
 
@@ -52,7 +55,7 @@ public class Main {
 
                 game.updatePlayersArray();
 
-                boolean safe = game.strikeOrNot();
+                boolean safe = game.safeOrNot();
 
                 if (!safe) {
                     lives--;
@@ -61,13 +64,13 @@ public class Main {
                 System.out.println("\nLives Left: " + lives);
 
                 if (game.showProgress().equals(game.showAnswer())) {
-                    pic.drawHangman(lives);
+                    System.out.println(pic.drawHangman(lives));
                     System.out.println("Congratulations! You found the word.");
                     break;
                 }
 
                 if (lives <= 0) {
-                    pic.drawHangman(lives);
+                    System.out.println(pic.drawHangman(lives));
                     System.out.println("You are dead! The correct answer was: " + answer);
                     break;
                 }
@@ -81,7 +84,6 @@ public class Main {
 
             } else {
                 System.out.println("Thanks for playing! Goodbye for now.");
-                keepPlaying = false;
                 break;
             }
 
