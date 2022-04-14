@@ -23,6 +23,10 @@ public class Goblin {
     }
 
     public void setPosition(int position) {
+        if (position>15 || position<0){
+            this.position = 15;
+            return;
+        }
         this.position = position;
     }
 
@@ -31,6 +35,10 @@ public class Goblin {
     }
 
     public void setHealth(int health) {
+        if (health < 0) {
+            this.health = 0;
+            return;
+        }
         this.health = health;
     }
 

@@ -19,7 +19,7 @@ public class Land {
         }
     }
 
-    public void printMap(ArrayList<Object> map){
+    public boolean printMap(ArrayList<Object> map){
         try {
             for(int i = 0; i < 4; i++) {
                 System.out.print(map.get(i));
@@ -37,11 +37,13 @@ public class Land {
                 System.out.print(map.get(i));
             }
             System.out.println();
+            return true;
         } catch (Exception e) {
             System.out.println("""
                     We are unable to update the map at this time.
                     Please try again later. Goodbye.""");
             System.exit(1);
+            return false;
         }
     }
 
