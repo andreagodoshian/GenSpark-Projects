@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.Random;
 
 public class Goblins extends GameObject {
@@ -7,10 +8,13 @@ public class Goblins extends GameObject {
     Random r = new Random();
     int choose = 0;
     int hp = 100;
+    private BufferedImage goblin_image;
 
-    public Goblins(int x, int y, ID id, Handler handler) {
-        super(x, y, id);
+    public Goblins(int x, int y, ID id, Handler handler, SpriteSheet ss) {
+        super(x, y, id, ss);
         this.handler = handler;
+
+        goblin_image = ss.grabImage(3, 1, 32, 32);
     }
 
     @Override
@@ -37,7 +41,7 @@ public class Goblins extends GameObject {
 
             if (tempObject.getId() == ID.Bullet) {
                 if (getBounds().intersects(tempObject.getBounds())){
-                    hp -= 25;
+                    hp -= 50;
                     handler.removeObject(tempObject);
                 }
             }
@@ -48,8 +52,7 @@ public class Goblins extends GameObject {
 
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.WHITE);
-        g.fillRect(x, y, 32, 32);
+        g.drawImage(goblin_image, x, y, null);
     }
 
     @Override // this collision is for bullets

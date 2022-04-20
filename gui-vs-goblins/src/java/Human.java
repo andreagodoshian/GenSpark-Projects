@@ -1,13 +1,20 @@
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Human extends GameObject{
 
     // remember: implement, but dont create new
     Handler handler;
+    Game game;
 
-    public Human (int x, int y, ID id, Handler handler) {
-        super(x, y, id);
+    private BufferedImage human_image;
+
+    public Human (int x, int y, ID id, Handler handler, Game game, SpriteSheet ss) {
+        super(x, y, id, ss);
         this.handler = handler;
+        this.game = game;
+
+        human_image = ss.grabImage(1, 1, 32, 48);
     }
 
     @Override
@@ -38,33 +45,39 @@ public class Human extends GameObject{
     private void collision() {
         for (int i = 0; i<handler.object.size(); i++) {
             GameObject tempObject = handler.object.get(i);
-            if (tempObject.getId() == ID.Block) {
 
+            if (tempObject.getId() == ID.Block) {
                 if(getBounds().intersects(tempObject.getBounds())) {
-                    if (velX>0) {
-                        velX=0;
-                        x=tempObject.getX() - 32;
-                    } else if (velX<0){
-                        velX = 0;
-                        x = tempObject.getX() + 32;
-                    }
-                    if (velY>0) {
-                        velY=0;
-                        y = tempObject.getY() - 48;
-                    } else if (velY<0){
-                        velY = 0;
-                        y = tempObject.getY() + 48;
+                    x += velX * -1;
+                    y += velY * -1;
+                }
+            }
+
+            if (tempObject.getId() == ID.Crate) {
+                if(getBounds().intersects(tempObject.getBounds())) {
+                    game.ammo += 10;
+                    handler.removeObject(tempObject);
+                }
+            }
+
+            if (tempObject.getId() == ID.Enemy) {
+                if(getBounds().intersects(tempObject.getBounds())) {
+                    game.hp--;
+                    if (game.hp <= 0) {
+                        handler.removeObject(this);
                     }
                 }
             }
+
+
+
+
         }
     }
 
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.BLUE);
-        g.fillRect(x, y, 32, 48);
-
+        g.drawImage(human_image, x, y, null);
     }
 
     @Override

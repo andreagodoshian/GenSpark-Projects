@@ -5,16 +5,28 @@ import java.io.IOException;
 
 public class BufferedImageLoader {
 
-    private BufferedImage image;
+    private BufferedImage level_image;
+    private BufferedImage sprite_image;
 
-    public BufferedImage loadImage() {
+    public BufferedImage loadLevel() {
 
         try {
-            this.image = ImageIO.read(new FileInputStream("src/resources/goblins-world.png"));
+            this.level_image = ImageIO.read(new FileInputStream("src/resources/goblins-world.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return image;
+        return level_image;
+    }
+
+    public BufferedImage loadSprite() {
+
+        try {
+            this.sprite_image = ImageIO.read(new FileInputStream("src/resources/sprite-sheet.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return sprite_image;
     }
 }

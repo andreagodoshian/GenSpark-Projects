@@ -16,12 +16,20 @@ public class Game extends Canvas implements Runnable {
     private boolean isRunning = false;
     private Thread thread;
     private Handler handler;
-    private BufferedImage level;
     private Camera camera;
+    private SpriteSheet ss;
+
+    private BufferedImage level;
+    private BufferedImage spriteSheet;
+    private BufferedImage floor;
+
+    public int ammo = 100;
+    public int hp = 100;
 
     // constructor
     public Game() {
         new Window(1000, 565, "Human vs. Goblins!", this);
+
         start();
 
         // create the Handler & Camera during Game construction
@@ -29,12 +37,16 @@ public class Game extends Canvas implements Runnable {
         camera = new Camera(0, 0);
         // addKeyListener works with the Canvas
         this.addKeyListener(new KeyInput(handler));
-        this.addMouseListener(new MouseInput(handler, camera));
 
         BufferedImageLoader loader = new BufferedImageLoader();
-        level = loader.loadImage();
+        level = loader.loadLevel();
+        spriteSheet = loader.loadSprite();
 
-        // load the level (previously add characters)
+        ss = new SpriteSheet(spriteSheet);
+
+        floor = ss.grabImage(3, 2, 32, 32);
+
+        this.addMouseListener(new MouseInput(handler, camera, this, ss));
         loadLevel(level);
     }
 
@@ -121,12 +133,31 @@ public class Game extends Canvas implements Runnable {
         /* ////////////////////////////////////////
         this is where the drawing happens ;P */
 
-        g.setColor(Color.MAGENTA);
-        g.fillRect(0, 0, 1000, 565);
-
         g2d.translate(-camera.getX(), -camera.getY());
-        handler.render(g); // make sure handler is AFTER background
+
+        for (int xx = 0; xx<30*72; xx+=32){
+            for (int yy = 0; yy<30*72; yy+=32) {
+                g.drawImage(floor, xx, yy, null);
+            }
+        }
+
+        handler.render(g);
+        // make sure handler is AFTER background & BEFORE translate
         g2d.translate(camera.getX(), camera.getY());
+
+        // HEALTH BAR, after translate, so always visible
+        g.setColor(Color.gray);
+        g.fillRect(5, 5, 200, 32);
+        g.setColor(Color.green);
+        g.fillRect(5, 5, hp*2, 32);
+        // below is for outline
+        g.setColor(Color.black);
+        g.drawRect(5, 5, 200, 32);
+
+        // Ammo count (as text)
+        g.setColor(Color.white);
+        g.drawString("Ammo: " + ammo, 5, 50);
+
 
         ///////////////////////////////////////////
         g.dispose();
@@ -146,13 +177,16 @@ public class Game extends Canvas implements Runnable {
                 int blue = (pixel) & 0xff;
 
                 if (red == 255)
-                    handler.addObject(new Block(xx*32, yy*32, ID.Block));
+                    handler.addObject(new Block(xx*32, yy*32, ID.Block, ss));
 
-                if (blue == 255)
-                    handler.addObject(new Human(xx*32, yy*32, ID.Player, handler));
+                if (blue == 255 & green != 255)
+                    handler.addObject(new Human(xx*32, yy*32, ID.Player, handler, this, ss));
 
-                if (green == 255)
-                    handler.addObject(new Goblins(xx*32, yy*32, ID.Enemy, handler));
+                if (green == 255 && blue == 0)
+                    handler.addObject(new Goblins(xx*32, yy*32, ID.Enemy, handler, ss));
+
+                if (green == 255 && blue == 255)
+                    handler.addObject(new Crate(xx*32, yy*32, ID.Crate, ss));
             }
         }
     }
