@@ -18,7 +18,8 @@ public class GenerateWord {
         } catch (Exception e) {
             System.out.println("""
                     Sorry, but we are unable to generate a secret word.
-                    Please troubleshoot, or try again later. Goodbye.""");
+                    For more information, please take a look at the stacktrace:""");
+            e.printStackTrace();
             System.exit(1);
         }
     }

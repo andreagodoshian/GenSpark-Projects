@@ -112,7 +112,11 @@ public class Game {
 
             pw.close();
         } catch (Exception e){
-            System.out.println("Error writing to file!");
+            System.out.println("""
+                    Sorry, but we are unable to work with the High Score file.
+                    For more information, please take a look at the stacktrace:""");
+            e.printStackTrace();
+            System.exit(1);
         }
 
 

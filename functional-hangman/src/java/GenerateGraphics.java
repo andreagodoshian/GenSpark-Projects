@@ -13,7 +13,9 @@ public class GenerateGraphics {
                 theGraphics.add(graphicsFile.nextLine());
             }
         } catch (Exception e){
-            System.out.println("Error! Bye!");
+            System.out.println("""
+                    Sorry, but we are unable to generate the graphics.
+                    For more information, please take a look at the stacktrace:""");
             e.printStackTrace();
             System.exit(1);
         }
