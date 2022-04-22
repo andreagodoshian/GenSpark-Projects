@@ -100,7 +100,7 @@ public class Game {
     }
 
     public void highScore(int finalScore){
-        String filePath = "C:\\Users\\12489\\Desktop\\hangman_high_scores.txt";
+        String filePath = "src/resources/hangman_high_scores.txt";
 
         try{
             FileWriter fw = new FileWriter(filePath, true);

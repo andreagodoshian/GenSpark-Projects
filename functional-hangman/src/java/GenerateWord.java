@@ -8,7 +8,7 @@ public class GenerateWord {
 
     public void setSecretWord() {
         try {
-            Scanner readDict = new Scanner(new File("C:\\Users\\12489\\Documents\\GenSpark-Projects\\hangman_words.txt"));
+            Scanner readDict = new Scanner(new File("src/resources/hangman_words.txt"));
             List<String> dictionary = new ArrayList<>();
 
             while (readDict.hasNext()) {

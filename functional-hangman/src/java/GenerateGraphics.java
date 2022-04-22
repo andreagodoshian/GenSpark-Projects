@@ -8,7 +8,7 @@ public class GenerateGraphics {
     GenerateGraphics(){
         try {
             Scanner graphicsFile = new Scanner(new File
-                    ("C:\\Users\\12489\\Desktop\\hangman_art.txt"));
+                    ("src/resources/hangman_art.txt"));
             while (graphicsFile.hasNext()){
                 theGraphics.add(graphicsFile.nextLine());
             }
