@@ -30,6 +30,7 @@ public class Main {
 
             while (true) {
                 System.out.println(graphics.drawGallows(game.getLives()) +
+                        "\nLives left:" + game.getLives() +
                         "\n" + game.getPlayersList() +
                         "\n" + game.getBoneyard() +
                         "\nPlease enter your guess below: ");
