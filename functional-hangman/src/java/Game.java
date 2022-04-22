@@ -1,6 +1,4 @@
-import java.io.File;
-import java.io.FileWriter;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -100,15 +98,21 @@ public class Game {
     }
 
     public void highScore(int finalScore){
-        String filePath = "src/resources/hangman_high_scores.txt";
+        String filePath = "src/resources/hangman_high_scores.csv";
+
+        readCSV(filePath, finalScore);
+        writeToCSV(filePath, finalScore);
+    }
+
+    public void writeToCSV(String filePath, int finalScore) {
 
         try{
             FileWriter fw = new FileWriter(filePath, true);
             PrintWriter pw = new PrintWriter(fw);
 
-            pw.println("Name: " + player +
-                    ", Score: " + finalScore +
-                    ", Date: " + new java.util.Date() + "\n");
+            pw.write(player + ",");
+            pw.write(finalScore + ",");
+            pw.write(new java.util.Date() + "\n");
 
             pw.close();
         } catch (Exception e){
@@ -118,7 +122,30 @@ public class Game {
             e.printStackTrace();
             System.exit(1);
         }
-
-
     }
+
+    public void readCSV(String filePath, int finalScore) {
+        ArrayList<Integer> allScores = new ArrayList<>();
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(filePath));
+            String line = "";
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                allScores.add(Integer.parseInt(values[1]));
+            }
+        } catch (Exception e){
+            System.out.println("""
+                    Sorry, but we are unable to work with the High Score file.
+                    For more information, please take a look at the stacktrace:""");
+            e.printStackTrace();
+            System.exit(1);
+        }
+
+        int previousHigh = allScores.stream().max(Integer::compare).get();
+        if (finalScore > previousHigh) {
+            System.out.println("YOU HAVE A NEW HIGH SCORE! CONGRATULATIONS!");
+        }
+    }
+
 }
