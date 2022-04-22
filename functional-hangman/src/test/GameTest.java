@@ -10,7 +10,7 @@ class GameTest {
 
     @BeforeEach
     void setUp() {
-        testGame = new Game("Mr. Ballen", "mysterious");
+        testGame = new Game("Mr. Ballen (test case)", "mysterious");
         // sorry but Mr. Ballen is my new favorite "stock name" for coding :P
         testGame.setStage(6);
     }
@@ -43,8 +43,6 @@ class GameTest {
         testGame.setGuessForTest("s");
         testGame.updateIfSafe();
         assertEquals("Answer: m_s______s", testGame.getPlayersProgress());
-
-
     }
 
     @Test
@@ -58,30 +56,52 @@ class GameTest {
     @Test
     void updateIfSafe() {
         testGame.setGuessForTest("M");
+        assertEquals(true, testGame.updateIfSafe());
+        testGame.setGuessForTest("Z");
+        assertEquals(false, testGame.updateIfSafe());
+        testGame.setGuessForTest("!");
+        assertEquals(false, testGame.updateIfSafe());
     }
 
     @Test
     void getSecretWord() {
+        assertEquals("mysterious", testGame.getSecretWord());
     }
 
     @Test
     void solved() {
+        assertEquals(false, testGame.solved());
+        testGame.setGuessForTest("m");
+        testGame.updateIfSafe();
+        testGame.setGuessForTest("y");
+        testGame.updateIfSafe();
+        testGame.setGuessForTest("s");
+        testGame.updateIfSafe();
+        testGame.setGuessForTest("t");
+        testGame.updateIfSafe();
+        testGame.setGuessForTest("e");
+        testGame.updateIfSafe();
+        testGame.setGuessForTest("r");
+        testGame.updateIfSafe();
+        testGame.setGuessForTest("i");
+        testGame.updateIfSafe();
+        testGame.setGuessForTest("o");
+        testGame.updateIfSafe();
+        testGame.setGuessForTest("u");
+        testGame.updateIfSafe();
+        assertEquals(true, testGame.solved());
     }
 
     @Test
-    void updateScore() {
+    void updateScore() { // assume they have all six lives
+        int newScore = testGame.updateScore(10); // in my game, everyone starts with ten points
+        assertEquals(70, newScore);
     }
 
     @Test
-    void highScore() {
-    }
-
-    @Test
-    void writeToCSV() {
-    }
-
-    @Test
-    void readCSV() {
+    void highScore() { // high score contains "write method" & "read method" so i wont test separately
+        testGame.highScore(76);
+        // check csv && if no stack traces, then it's good
     }
 
     @AfterEach

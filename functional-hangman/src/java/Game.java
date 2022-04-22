@@ -71,7 +71,7 @@ public class Game {
     }
 
     protected void setGuessForTest (String guess) {
-        this.currentGuess = guess;
+        this.currentGuess = guess.toLowerCase();
         theBoneyard.add(currentGuess.charAt(0));
     }
 
@@ -144,6 +144,7 @@ public class Game {
                 String[] values = line.split(",");
                 allScores.add(Integer.parseInt(values[1]));
             }
+        } catch (NoSuchElementException e){
         } catch (Exception e){
             System.out.println("""
                     Sorry, but we are unable to work with the High Score file.
@@ -152,10 +153,12 @@ public class Game {
             System.exit(1);
         }
 
-        int previousHigh = allScores.stream().max(Integer::compare).get();
-        if (finalScore > previousHigh) {
-            System.out.println("YOU HAVE A NEW HIGH SCORE! CONGRATULATIONS!");
+        try {
+            int previousHigh = allScores.stream().max(Integer::compare).get();
+            if (finalScore > previousHigh) {
+                System.out.println("YOU HAVE A NEW HIGH SCORE! CONGRATULATIONS!");
+            }
+        } catch (Exception e) {
         }
     }
-
 }
