@@ -1,37 +1,37 @@
-import java.io.*;
 import java.util.*;
 
 public class Main {
-    public static void main (String[] args){
 
-        String name;
-        /*
-        they get ten points just for playing,
-        because why not.
-        */
-        int score = 10;
+    GenerateWord generateWord;
+    GenerateGraphics graphics;
+    Game game;
 
+    String name;
+    int score = 10; // they get ten points just for playing, because why not
+    Scanner input;
+
+    public Main() {
         System.out.println("""
                 Welcome to the game of Hangman!
                 This version is only for one player.
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~""");
 
-            Scanner input = new Scanner(System.in);
-
+            input = new Scanner(System.in);
             System.out.println("Before we begin, please enter your name below:");
             name = input.nextLine();
 
-            GenerateWord generateWord = new GenerateWord();
+            generateWord = new GenerateWord();
             generateWord.setSecretWord();
 
-            Game game = new Game(name, generateWord.getSecretWord());
+            graphics = new GenerateGraphics();
+
+            game = new Game(name, generateWord.getSecretWord());
             game.setStage(6);
-            GenerateGraphics graphics = new GenerateGraphics();
 
             while (true) {
                 System.out.println(graphics.drawGallows(game.getLives()) +
                         "\nLives left:" + game.getLives() +
-                        "\n" + game.getPlayersList() +
+                        "\n" + game.getPlayersProgress() +
                         "\n" + game.getBoneyard() +
                         "\nPlease enter your guess below: ");
 
@@ -74,5 +74,9 @@ public class Main {
                     }
                 }
         }
+    }
+
+    public static void main (String[] args){
+        new Main();
     }
 }

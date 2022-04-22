@@ -18,7 +18,7 @@ public class Game {
 
     Game (String player, String secretWord){
         this.player = player;
-        this.secretWord = "poop";
+        this.secretWord = secretWord;
     }
 
     public void setStage(int lives){
@@ -31,7 +31,9 @@ public class Game {
                 .map(elem -> "_").collect(Collectors.toList()).toString();
     }
 
+
     public void setLives(int lives){
+        if (lives < 0) lives = 0;
         this.lives = lives;
     }
 
@@ -39,9 +41,12 @@ public class Game {
         return lives;
     }
 
-    public String getPlayersList(){
+    public String getPlayersProgress(){
         return "Answer: " + playersProgress;
     }
+
+    // for testing
+    protected String getSecretList() {return secretList.toString();}
 
     public String getBoneyard(){
         return "Already Guessed: " + theBoneyard.toString();
@@ -56,13 +61,18 @@ public class Game {
         } else if (!Character.isAlphabetic(guess.charAt(0))) {
             System.out.println("Please make your guess is alphabetic");
             checkGuess();
-        } else if (theBoneyard.contains(guess)){
+        } else if (theBoneyard.contains(guess.charAt(0))){
             System.out.println("You already guessed that");
             checkGuess();
         } else {
             this.currentGuess = guess;
             theBoneyard.add(currentGuess.charAt(0));
         }
+    }
+
+    protected void setGuessForTest (String guess) {
+        this.currentGuess = guess;
+        theBoneyard.add(currentGuess.charAt(0));
     }
 
     public boolean updateIfSafe(){
