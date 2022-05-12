@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+1.) right-click main && new && directory
+2.) search "xml namespace for spring context"
+3.) https://docs.spring.io
+4.) ctrl + f "context"
+5.) A.2.8. The context schema
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+    <!-- for Annotations -->
+    <context:component-scan base-package="org.example" />
+
+    <!-- setting some values, since Hybrid -->
+    <bean id="Phone" class="org.example.Phone">
+        <property name="mobile" value="248-123-4567"/>
+        <property name="home" value="313-123-4567"/>
+    </bean>
+
+    <bean id="Address" class="org.example.Address">
+        <property name="city" value="Pontiac"/>
+        <property name="state" value="Michigan"/>
+        <property name="country" value="USA"/>
+        <property name="zipcode" value="12345"/>
+    </bean>
+
+</beans>
