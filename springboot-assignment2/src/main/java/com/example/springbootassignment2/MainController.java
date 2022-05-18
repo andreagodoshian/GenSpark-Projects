@@ -8,6 +8,8 @@ public class MainController {
 
     @GetMapping("")
     public String landingPage() {
+        System.out.println("Main Controller // " +
+                "Now viewing index.html");
         return "index";
     }
 }

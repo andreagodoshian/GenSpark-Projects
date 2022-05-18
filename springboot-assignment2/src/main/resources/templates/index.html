@@ -1,14 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Welcome to My Application</title>
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
 </head>
 <body>
-<h1>"Welcome back my friends,
-<br>to the show that never ends.
-<br>We're so glad you could attend!"
-<br>-ELP</h1>
-
+    <div class="container-fluid text-center">
+        <h1>Welcome to Andrea Godoshian's FIRST user database!</h1>
+        <a class="h2" th:href="@{/users}">Manage Users</a>
+        <br>
+        <iframe width="560" height="315"
+                src="https://www.youtube.com/embed/IwSTe9uit48"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write;
+                encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+        </iframe>
+    </div>
 </body>
 </html>
