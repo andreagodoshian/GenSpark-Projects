@@ -22,10 +22,10 @@ public class UserRepositoryTest {
     @Test
     public void testAddNew(){
         User user1 = new User();
-        user1.setEmail("daria@sicksadworld.com");
+        user1.setEmail("trent@sicksadworld.com");
         user1.setPassword("MysticSpiral");
-        user1.setFirstName("Daria");
-        user1.setLastName("Morgendorffer");
+        user1.setFirstName("Trent");
+        user1.setLastName("Lane");
         User savedUser1 = testRepo.save(user1);
 
         Assertions.assertNotNull(savedUser1);
@@ -58,11 +58,11 @@ public class UserRepositoryTest {
         Integer userId = 1;
         Optional<User> optionalUser = testRepo.findById(userId);
         User user = optionalUser.get();
-        user.setPassword("LetsGetPizza");
+        user.setPassword("FrickinFriends");
         testRepo.save(user);
 
         User updatedUser = testRepo.findById(userId).get();
-        Assertions.assertEquals("LetsGetPizza", updatedUser.getPassword());
+        Assertions.assertEquals("FrickinFriends", updatedUser.getPassword());
     }
 
     @Test
@@ -75,7 +75,7 @@ public class UserRepositoryTest {
 
     @Test
     public void testDelete() {
-        Integer userId = 2;
+        Integer userId = 1;
         testRepo.deleteById(userId);
 
         Optional<User> optionalUser = testRepo.findById(userId);
