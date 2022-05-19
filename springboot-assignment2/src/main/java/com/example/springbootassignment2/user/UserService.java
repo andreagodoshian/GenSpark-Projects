@@ -26,5 +26,13 @@ public class UserService {
         else throw new Exception("Couldn't find user!");
     }
 
+    public void delete(Integer id) throws Exception {
+        Long count = userRepository.countById(id);
+        if (count == null || count == 0) {
+            throw new Exception("Couldn't find user!");
+        }
+        userRepository.deleteById(id);
+    }
+
 
 }

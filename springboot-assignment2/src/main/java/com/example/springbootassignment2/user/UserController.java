@@ -48,8 +48,25 @@ public class UserController {
                     ("pageTitle", "Edit User (ID: " + id + ")");
             return "user_form";
         } catch (Exception e) {
-            ra.addFlashAttribute("message", "Error!");
+            ra.addFlashAttribute("message", "Error! " + e.getMessage());
             return "redirect:/users";
         }
     }
+
+    @GetMapping("/users/delete/{id}")
+    public String deleteUser(
+            @PathVariable("id") Integer id, RedirectAttributes ra) {
+        try{
+            userService.delete(id);
+            ra.addFlashAttribute("message", "Great success!");
+            return "user_form";
+        } catch (Exception e) {
+            ra.addFlashAttribute("message", "Error! " + e.getMessage());
+        }
+        return "redirect:/users";
+    }
+
+
+
+
 }
