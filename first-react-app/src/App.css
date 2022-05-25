@@ -162,3 +162,33 @@ nav ul li {
   text-transform: uppercase;
   color: var(--primary-black);
 }
+
+/* --------- services --------- */
+.portfolio {
+  text-align: center;
+  padding-bottom: 2rem;
+  background: var(--primary-light-gray);
+}
+
+.portfolio h1 {
+  color: var(--primary-black);
+  text-transform: uppercase;
+}
+
+.portfolio .box {
+  width: 10rem;
+  height: 18rem;
+  border: 0.2rem solid var(--primary-black);
+  padding: 0.6rem;
+  margin-bottom: 2rem;
+  background-color: var(--primary-white);
+}
+
+.portfolio-image {
+  width: 5rem;
+  height: 5rem;
+}
+
+.portfolio .box:hover {
+  background-color: var(--primary-light-gray);
+}
