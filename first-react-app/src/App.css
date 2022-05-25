@@ -5,6 +5,8 @@
   --primary-white: #fff;
   --primary-black: #000;
   --primary-light-gray: #f4f4f4;
+  --primary-gray: #ccd1d9;
+  --primary-dark-gray: #666666;
 }
 
 body {
@@ -152,4 +154,11 @@ nav ul li {
     height: 13rem;
   }
 
+}
+
+/* --------- experience --------- */
+
+.experience h1 {
+  text-transform: uppercase;
+  color: var(--primary-black);
 }
