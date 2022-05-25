@@ -1,4 +1,4 @@
-/* --- import google font --- */
+/* --------- general styling --------- */
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
 
 :root {
@@ -10,7 +10,7 @@ body {
   font-family: 'Roboto Condensed', sans-serif;
 }
 
-/* --- nav bar --- */
+/* --------- nav bar --------- */
 .navbar-brand {
   font-size: x-large;
   font-weight: 900;
@@ -36,4 +36,59 @@ nav ul li {
 .navbar-nav > li > a:hover {
   border-top: 0.2rem solid var(--primary-white);
   text-decoration: underline;
+}
+
+/* --------- header --------- */
+.header-wrapper {
+  position: relative;
+  background: url(header_background.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 90vh;
+}
+
+.main-info {
+  display: flex;
+  position: absolute;
+
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  font-family: 'Roboto Condensed', sans-serif;
+  text-align: center;
+  color: var(--primary-white);
+  text-transform: uppercase;
+}
+
+.typed-text {
+  font-size: 2rem;
+}
+
+.btn-main-offer {
+  border: 1px solid var(--primary-white);
+  border-radius: 0;
+  margin: 2rem;
+  padding: 0.6rem;
+
+  color: var(--primary-white);
+}
+
+.btn-main-offer:hover {
+  color: white;
+}
+
+@media(max-width: 800px) {
+  .main-info h1 {
+    font-size: 1.75rem !important;
+  }
+
+  .typed-text {
+    font-size: 1.25rem;
+  }
 }
