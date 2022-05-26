@@ -153,7 +153,6 @@ nav ul li {
   .services .box {
     height: 13rem;
   }
-
 }
 
 /* --------- experience --------- */
@@ -163,7 +162,7 @@ nav ul li {
   color: var(--primary-black);
 }
 
-/* --------- services --------- */
+/* --------- portfolio --------- */
 .portfolio {
   text-align: center;
   padding-bottom: 2rem;
@@ -176,7 +175,6 @@ nav ul li {
 }
 
 .portfolio .box {
-  width: 10rem;
   height: 18rem;
   border: 0.2rem solid var(--primary-black);
   padding: 0.6rem;
@@ -185,10 +183,79 @@ nav ul li {
 }
 
 .portfolio-image {
-  width: 5rem;
-  height: 5rem;
+  width: 7rem;
+  height: 7rem;
 }
 
 .portfolio .box:hover {
   background-color: var(--primary-light-gray);
+}
+
+/* --------- contact --------- */
+
+.contact {
+  background: url(header_background.jpg) no-repeat;
+  background-color: black;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  color: var(--primary-white);
+}
+
+.contact h1 {
+  text-transform: uppercase;
+  padding: 2rem 0;
+}
+
+.contact p {
+  font-size: 1.2rem;
+  padding: 0.25rem;
+}
+
+.contact-btn {
+  border: 1px solid var(--primary-black);
+  border-radius: 0;
+  margin: 1rem 0 0 0;
+  width: 100%;
+
+  background-color: var(--primary-gray);
+  color: var(--primary-black);
+}
+
+.contact-btn:hover {
+  color: white;
+  border: 1px solid var(--primary-white);
+}
+
+/* --------- input for contact section --------- */
+.contact input, .contact textarea {
+  width: 100%;
+  box-sizing: border-box;
+  resize: none;
+  border: 0;
+  border-bottom: 2px solid var(--primary-black);
+  margin-bottom: 1rem;
+}
+
+.contact textarea {
+  height: 12.4rem !important;
+}
+
+@media(max-width:700px){
+  .contact {
+    overflow-x: scroll;
+  }
+  
+  .contact h1 {
+    padding: 0.5rem 0;
+  }
+
+  .contact p {
+    font-size: 1rem;
+    padding: 0.15rem;
+  }
+
+  .contact textarea {
+    height: 8rem !important;
+  }
 }

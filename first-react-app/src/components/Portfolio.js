@@ -24,7 +24,7 @@ const Portfolio = () => {
                     <div className='box'>
                         <img className='portfolio-image' src={fcc} alt="genspark logo"></img>
                         <h5><a href='https://github.com/godoshian/basic-html-css' target="_blank">Design Repository</a></h5>
-                            <p>Recieved a certificate from freeCodeCamp, for basic HTML and CSS.</p>
+                            <p>Certified by freeCodeCamp, for basic HTML and CSS.</p>
                     </div>
                 </div>
 
@@ -32,7 +32,7 @@ const Portfolio = () => {
                     <div className='box'>
                         <img className='portfolio-image' src={python} alt="genspark logo"></img>
                         <h5><a href='https://github.com/godoshian/AI_ML' target="_blank">Python Repository</a></h5>
-                            <p>Data Science projects with Python (pandas, matplotlib, tensorflow, etc).</p>
+                            <p>Data Science projects (pandas, matplotlib, tensorflow, etc).</p>
                     </div>
                 </div>
 
