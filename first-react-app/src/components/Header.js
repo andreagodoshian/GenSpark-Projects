@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <div className='header-wrapper'>
         <div className='main-info'>
-            <h1>Андрия Годошьян - Developer For Hire</h1>
+            <h1>String name = "Андрия Годошьян";</h1>
             <Typed className='typed-text' 
             strings={["Willkommen auf meiner Website!", "Добро пожаловать на мой сайт!", "Welcome to my website!"]}
             typeSpeed={40}

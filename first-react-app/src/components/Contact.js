@@ -1,6 +1,26 @@
-import React from 'react'
+import React, {useRef} from 'react';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
+
+    const form = useRef();
+
+    const serviceID = "service_ID";
+    const templateID = "template_ID";
+    const publicKey = "UJbCWKgnQpWMiqHFj";
+
+    const sendEmail = (e) => {
+        e.preventDefault();
+    
+        emailjs.sendForm(serviceID, templateID, form.current, publicKey)
+          .then((result) => {
+              console.log(result.text);
+          }, (error) => {
+              console.log(error.text);
+          });
+      };
+
+
   return (
     <div className='contact'>
 
@@ -10,43 +30,45 @@ const Contact = () => {
         </div>
 
         <div className='container'>
-            <div className='row'>
+            <form ref={form} onSubmit={sendEmail}>
+                <div className='row'>
 
-                <div className='col-md-6 col-xs-12'>
-                    <input id='name'
-                    type ="text"
-                    className='form-control'
-                    placeholder='Name'
-                    name="name"/>
-                    <input id='phone'
-                    type="text"
-                    className='form-control'
-                    placeholder='Phone number'
-                    phone="phone"/>
-                    <input id='email'
-                    type="email"
-                    className='form-control'
-                    placeholder='E-mail'
-                    email="email"/>
-                    <input id='subject'
-                    type="text"
-                    className='form-control'
-                    placeholder='Subject'
-                    subject="subject"/>
-                </div>
+                    <div className='col-md-6 col-xs-12'>
+                        <input id='name'
+                        type ="text"
+                        className='form-control'
+                        placeholder='Name'
+                        name="name"/>
+                        <input id='phone'
+                        type="text"
+                        className='form-control'
+                        placeholder='Phone number'
+                        name="phone"/>
+                        <input id='email'
+                        type="email"
+                        className='form-control'
+                        placeholder='E-mail'
+                        name="email"/>
+                        <input id='subject'
+                        type="text"
+                        className='form-control'
+                        placeholder='Subject'
+                        name="subject"/>
+                    </div>
             
-                <div className='col-md-6 col-xs-12'>
-                    <textarea id='description'
-                    type='text'
-                    className='form-control'
-                    placeholder='Your message goes here'
-                    description='description'
-                    ></textarea>
-                    <button className='btn-main-offer contact-btn'
-                    type='submit'>Send</button>
-                </div>
+                    <div className='col-md-6 col-xs-12'>
+                        <textarea id='description'
+                        type='text'
+                        className='form-control'
+                        placeholder='Your message goes here'
+                        name='description'
+                        ></textarea>
+                        <button className='btn-main-offer contact-btn'
+                        type='submit'>Send</button>
+                    </div>
 
-            </div>
+                </div>
+            </form>
         </div>
 
 
