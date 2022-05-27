@@ -259,3 +259,18 @@ nav ul li {
     height: 8rem !important;
   }
 }
+
+/* --------- footer --------- */
+.footer {
+  background-color: var(--primary-black);
+  color: var(--primary-white);
+  padding: 2rem;
+}
+
+.footer a{
+  color: var(--primary-gray);
+}
+
+.footer a:hover{
+  color: var(--primary-white);
+}
