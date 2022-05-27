@@ -18,6 +18,8 @@ const Contact = () => {
           }, (error) => {
               console.log(error.text);
           });
+          e.target.reset();
+          alert("Thank you! Your message was sent.");
       };
 
 
@@ -38,22 +40,29 @@ const Contact = () => {
                         type ="text"
                         className='form-control'
                         placeholder='Name'
-                        name="name"/>
+                        name="name"
+                        required/>
+
                         <input id='phone'
                         type="text"
                         className='form-control'
                         placeholder='Phone number'
-                        name="phone"/>
+                        name="phone"
+                        required/>
+
                         <input id='email'
                         type="email"
                         className='form-control'
                         placeholder='E-mail'
-                        name="email"/>
+                        name="email"
+                        required/>
+
                         <input id='subject'
                         type="text"
                         className='form-control'
                         placeholder='Subject'
-                        name="subject"/>
+                        name="subject"
+                        required/>
                     </div>
             
                     <div className='col-md-6 col-xs-12'>
@@ -62,7 +71,7 @@ const Contact = () => {
                         className='form-control'
                         placeholder='Your message goes here'
                         name='description'
-                        ></textarea>
+                        required></textarea>
                         <button className='btn-main-offer contact-btn'
                         type='submit'>Send</button>
                     </div>
