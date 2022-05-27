@@ -3,7 +3,7 @@ import Typed from "react-typed";
 
 const Header = () => {
   return (
-    <div className='header-wrapper'>
+    <div id="home" className='header-wrapper'>
         <div className='main-info'>
             <h1>String name = "Андрия Годошьян";</h1>
             <Typed className='typed-text' 
@@ -11,7 +11,7 @@ const Header = () => {
             typeSpeed={40}
             backSpeed={60}
             loop></Typed>
-            <a href='#' className='btn-main-offer'>Contact</a>
+            <a href='#contact' className='btn-main-offer'>Contact</a>
         </div>
     </div>
   )

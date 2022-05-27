@@ -7,7 +7,7 @@ import book from '../../src/book.jpg';
 
 const Portfolio = () => {
   return (
-    <div className='portfolio'>
+    <div id="portfolio" className='portfolio'>
         <h1 className='py-5'>Portfolio</h1>
             <div className='container'>
                 <div className='row'>
