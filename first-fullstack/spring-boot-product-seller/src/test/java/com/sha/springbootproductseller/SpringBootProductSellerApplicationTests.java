@@ -1,4 +1,4 @@
-package com.example.springbootproductseller;
+package com.sha.springbootproductseller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
