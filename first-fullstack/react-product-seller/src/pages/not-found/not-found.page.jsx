@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+
 
 const NotFoundPage = () => {
     return (
@@ -9,10 +10,10 @@ const NotFoundPage = () => {
                         404
                     </span>
                     <div className="mb-4 lead">
-                        Oops! We can't seem to find your page.
+                        Oops! We can't seem to find the page you are looking for.
                     </div>
 
-                    <Link to='/home' className='btn btn-link'>
+                    <Link to="/home" className="btn btn-link">
                         Back to Home
                     </Link>
                 </div>

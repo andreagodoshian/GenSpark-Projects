@@ -36,6 +36,7 @@ public class AuthenticationController
         // even though designated as unique, need to check
         if (userService.findByUsername(user.getUsername()).isPresent())
         {
+            // this covers the 409 error
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
         return new ResponseEntity<>(userService.saveUser(user), HttpStatus.CREATED);

@@ -9,7 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @SpringBootApplication
 public class SpringBootProductSellerApplication {
 
-	// "who put the main at the bottom of the program?"
+	// "who put the main at the bottom of the function?"
 	// ^^joke from that funny guy on YouTube
 
 	public static void main(String[] args) {
