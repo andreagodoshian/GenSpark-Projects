@@ -2,15 +2,17 @@ import { BASE_API_URL } from '../common/constants';
 import axios from 'axios';
 import { authHeader } from './base.service';
 
-
+// specify the backend url (endpoint)
 const API_URL = BASE_API_URL + '/api/purchase';
 
 class PurchaseService {
 
+    // with axios, we will send a post request
     savePurchase(purchase) {
         return axios.post(API_URL, purchase, {headers: authHeader()});
     }
 
+    // with axios, we will send a get request
     getAllPurchaseItems() {
         return axios.get(API_URL, {headers: authHeader()});
     }
@@ -18,3 +20,7 @@ class PurchaseService {
 }
 
 export default new PurchaseService();
+
+
+// SINCE WE ARE USING JWT (JsonWebToken)
+// MAKE SURE TO ADD THE AUTHHEADER!!!!!!!!!

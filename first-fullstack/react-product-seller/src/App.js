@@ -11,6 +11,8 @@ import { UnauthorizedPage } from './pages/unauthorized/unauthorized.page';
 import { AuthGuard } from './guards/auth.guard';
 import { Role } from './models/role';
 
+// make sure to add AuthGuard to protected pages!!!
+
 function App() {
   return (
       <BrowserRouter>
@@ -22,7 +24,7 @@ function App() {
                   <Route path="/login" element={<LoginPage/>}/>
                   <Route path="/register" element={<RegisterPage/>}/>
 
-                  <Route path="/profile" element={
+                    <Route path="/profile" element={
                       <AuthGuard roles={[Role.ADMIN, Role.USER]}>
                           <ProfilePage/>
                       </AuthGuard>

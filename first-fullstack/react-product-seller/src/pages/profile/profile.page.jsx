@@ -9,25 +9,34 @@ import { useNavigate } from 'react-router-dom';
 
 const ProfilePage = () => {
 
+    // create a constant array, since we want to
+    // display all of the purchases on the profile page
     const [purchaseList, setPurchaseList] = useState([]);
+
+    // of course, declare const for error message
     const [errorMessage, setErrorMessage] = useState('');
 
+    // grab the user
     const currentUser = useSelector(state => state.user);
+    
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    // mounted method (useEffect because functional)
     useEffect(() => {
         PurchaseService.getAllPurchaseItems().then((response) => {
             setPurchaseList(response.data);
         });
     }, []);
 
+    // this is just an easy toggle for demo
     const changeRole = () => {
 
         const newRole = currentUser.role === Role.ADMIN ? Role.USER : Role.ADMIN;
 
         UserService.changeRole(newRole).then(() => {
-           //clear session
+           // because of JWT token,
+           // user has to log-out (clear session)
             dispatch(clearCurrentUser());
             navigate('/login');
         }).catch((err) => {
@@ -35,6 +44,12 @@ const ProfilePage = () => {
             console.log(err);
         });
     };
+
+    //////////////////////////////////////////
+    // functions are done! it's HTML time!! //
+    //////////////////////////////////////////
+
+    // purchaseList.map((item, ind)
 
     return (
         <div className="container">

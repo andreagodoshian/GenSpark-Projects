@@ -93,6 +93,7 @@ const RegisterPage = () => {
          if (error?.response?.status === 409) {
              setErrorMessage('Invalid or already exists.');
          } else {
+             alert("Great! Try to log-in ;)");
             navigate('/login');
          }
          // FINALLY, if this far, then set loading to false

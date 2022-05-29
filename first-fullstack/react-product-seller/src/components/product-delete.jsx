@@ -1,12 +1,16 @@
 import { forwardRef, useImperativeHandle, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 
+// this "delete Modal" is for confirming deletion
 
 const ProductDelete = forwardRef((props, ref) => {
+    // ^^since this is a child, using "forwardRef"
 
     const [show, setShow] = useState(false);
+    // determines if visible
 
     useImperativeHandle(ref, () => ({
+        //^^parent can access what's inside of here
 
         showDeleteModal() {
             setShow(true);
@@ -14,10 +18,19 @@ const ProductDelete = forwardRef((props, ref) => {
 
     }));
 
+    // this function is called once clicked
+    // props allow us to send info to parent
     const deleteProduct = () => {
         props.onConfirmed();
         setShow(false);
     };
+
+    //////////////////////////////////////////
+    // functions are done! it's Modal time! //
+    //////////////////////////////////////////
+
+    // onClick={() => setShow(false)}>Cancel</button>
+    // onClick={() => deleteProduct()}>I'm sure!</button>
 
     return (
         <Modal show={show}>

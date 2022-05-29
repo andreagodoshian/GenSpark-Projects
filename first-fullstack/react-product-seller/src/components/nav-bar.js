@@ -7,16 +7,22 @@ import { Role } from '../models/role';
 
 const NavBar = () => {
 
+    // we need a currentUser object, so we can display
     const currentUser = useSelector(state => state.user);
 
+    // this is from react-redux
     const dispatch = useDispatch();
+    // this is react-router-dom
     const navigate = useNavigate();
 
+    // react-redux "useDispatch"
     const logout = () => {
         dispatch(clearCurrentUser());
         navigate('/login');
     };
 
+    // dashboard is different, for ADMIN && USER
+    // since log-out is function, need "onClick"
     return (
         <nav className="navbar navbar-expand navbar-dark bg-dark">
             <a href="https://reactjs.org" className="navbar-brand ms-1">

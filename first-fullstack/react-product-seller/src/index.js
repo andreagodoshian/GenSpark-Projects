@@ -17,6 +17,8 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { handleResponseWithLoginCheck } from './services/base.service';
 
+
+// this is for the JWT
 handleResponseWithLoginCheck();
 
 

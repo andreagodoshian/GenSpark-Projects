@@ -3,27 +3,50 @@ import Product from '../models/product';
 import ProductService from '../services/product.service';
 import { Modal } from 'react-bootstrap';
 
+// this is for the admin page
+// need to create {Modal} from react-bootstrap
+// (considered a component)
 
+// the component itself is ProductSave
+
+// treated as a child component, so we will
+// call it from admin as a child
+// (this is why we're using "forwardRef")
 const ProductSave = forwardRef((props, ref) => {
 
     useImperativeHandle(ref, () => ({
-        //interaction with parent
+        // ^^this is for interaction with parent
+
+        // this function lets parent showP.M.
         showProductModal() {
+
+            // setTimeout ensures the data loads
             setTimeout(() => {
                 setShow(true);
             }, 0);
         }
     }));
 
+    //////////////////////////////////////////
+    // easy way to implement "edit"
     useEffect(() => {
         setProduct(props.product);
     }, [props.product]);
+    //////////////////////////////////////////
 
+    // now we can create variables
+    // first, we have a product variable...
     const [product, setProduct] = useState(new Product('', '', 0));
     const [errorMessage, setErrorMessage] = useState('');
     const [submitted, setSubmitted] = useState(false);
     const [show, setShow] = useState(false);
+    // ^^is the Modal being shown, or not???
 
+    //////////////////
+    // functions... //
+    //////////////////
+
+    // first: of course, saveProduct...
     const saveProduct = (e) => {
       e.preventDefault();
 
@@ -33,8 +56,12 @@ const ProductSave = forwardRef((props, ref) => {
           return;
       }
 
+      // axios stuff - interacting with backend
       ProductService.saveProduct(product).then(response => {
-          //...
+          
+        // a "react prop" is an object that listens...
+        // sends to parent (parent has "onChildEvent")
+        // THIS IS AT THE BOTTOM OF admin.page.jsx !!!!!!
           props.onSaved(response.data);
           setShow(false);
           setSubmitted(false);
@@ -44,7 +71,9 @@ const ProductSave = forwardRef((props, ref) => {
       });
     };
 
-    //<input name="x" value="y">
+    // second function: handleChange
+    // this is for variable binding
+    // <input name="x" value="y">
     const handleChange = (e) => {
       const {name, value} = e.target;
 
@@ -55,6 +84,14 @@ const ProductSave = forwardRef((props, ref) => {
           };
       }));
     };
+
+    //////////////////////////////////////////
+    // functions are done! it's Modal time! //
+    //////////////////////////////////////////
+
+    // remember!! this modal is just for saving
+    // onSubmit={(e) => saveProduct(e)}
+    // there will be another modal for deleting
 
     return (
         <Modal show={show}>

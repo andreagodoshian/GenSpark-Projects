@@ -10,26 +10,37 @@ import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 
 const HomePage = () => {
 
+    // since we want to display products, make constant
     const [productList, setProductList] = useState([]);
+    
+    // of we also need error && info/success messages
     const [errorMessage, setErrorMessage] = useState('');
     const [infoMessage, setInfoMessage] = useState('');
 
+    // get current user, to ensure purchasing power
     const currentUser = useSelector(state => state.user);
 
+    // then, implement the mounted method
+    // (useEffect for functional)
     useEffect(() => {
         ProductService.getAllProducts().then((response) => {
             setProductList(response.data);
         });
     }, []);
-
+    
+    // function: purchasing!!
     const purchase = (product) => {
+        // check if logged in, before purchase
         if (!currentUser?.id) {
             setErrorMessage('You should login to buy a product.');
             return;
         }
 
+        // if logged in, create purchase object
         const purchase = new Purchase(currentUser.id, product.id, product.price);
 
+        // FINALLY, you can call the PurchaseService
+        // aka backend
         PurchaseService.savePurchase(purchase).then(() => {
             setInfoMessage('Mission is completed.');
         }).catch((err) => {
@@ -38,6 +49,13 @@ const HomePage = () => {
         });
     };
 
+    //////////////////////////////////////////
+    // functions are done! it's HTML time!! //
+    //////////////////////////////////////////
+
+    // REMEMBER: productList.map(item, ind)
+    // onClick={() => purchase(item)}
+    // you can do this, you defined it above
     return (
         <div className="container p-3">
 
