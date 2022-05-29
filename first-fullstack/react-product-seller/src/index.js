@@ -8,15 +8,24 @@ import reportWebVitals from './reportWebVitals';
 // we can reach them globally
 import 'bootstrap/dist/css/bootstrap.min.css';
 // npm install --save bootstrap react-bootstrap
-
 // npm install @fortawesome/react-fontawesome @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons
+
 // npm install axios
 // npm install react-router-dom
+// npm install redux react-redux
+import { Provider } from 'react-redux';
+import store from './store';
 
+//////////////////////////////////////
+// Provider components connect our global store/state 
+// to the entire app... that's why <App /> is
+// wrapped INSIDE of the Provider
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 
