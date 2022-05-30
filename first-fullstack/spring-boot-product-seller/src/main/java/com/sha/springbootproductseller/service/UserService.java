@@ -5,6 +5,9 @@ import com.sha.springbootproductseller.model.User;
 
 import java.util.Optional;
 
+// service layer doesn't extend JpaRepository, so need to define!!
+// interface encapsulates!!!
+
 /**
  * @author sa
  * @date 18.12.2021
@@ -12,9 +15,6 @@ import java.util.Optional;
  */
 public interface UserService
 {
-    // service layer doesn't extend JpaRepository, so need to define!!
-    // interface encapsulates!!!
-
     User saveUser(User user);
 
     Optional<User> findByUsername(String username);

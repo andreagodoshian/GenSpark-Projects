@@ -3,7 +3,6 @@ package com.sha.springbootproductseller.service;
 import com.sha.springbootproductseller.model.Role;
 import com.sha.springbootproductseller.model.User;
 import com.sha.springbootproductseller.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,6 +49,7 @@ public class UserServiceImpl implements UserService
     {
         return userRepository.findByUsername(username);
     }
+
 
     @Override
     @Transactional //Transactional is required when executing an update/delete query.
