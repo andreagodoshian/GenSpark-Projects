@@ -1,10 +1,21 @@
+// pages
+import Home from './pages/Home';
+import Login from './pages/Login';
+
+// styled containers
+import {StyledContainer} from './components/Styles';
+
+// how are you gonna route?? DUH!!!!!
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        She will NOT be loved! Ohhhhhhhh burn!
-      </header>
-    </div>
+    <Router>
+      <StyledContainer>
+        {/* <Home></Home> */}
+        <Login></Login>
+      </StyledContainer>
+    </Router>
   );
 }
 
