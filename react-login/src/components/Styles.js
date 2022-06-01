@@ -137,3 +137,11 @@ top: 35px;
 ${(props) => props.right && `right: 15px;`};
 ${(props) => !props.right && `left: 15px;`};
 `;
+
+export const ExtraText = styled.p`
+font-size: ${(props) => props.size}px;
+text-align: center;
+color: ${(props) => props.color? props.color : colors.dark2};
+padding: 2px;
+margin-top: 10px
+`;

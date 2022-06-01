@@ -1,6 +1,6 @@
 // npm i formik
 import { useField } from "formik";
-import { StyledTextInput, StyledLabel, StyledIcon } from "./Styles";
+import { StyledTextInput, StyledLabel, StyledIcon, ErrorMsg } from "./Styles";
 
 export const TextInput = ({icon, ...props}) => {
     const {field, meta} = useField(props);
@@ -20,6 +20,7 @@ export const TextInput = ({icon, ...props}) => {
             <StyledIcon>
                 {icon}
             </StyledIcon>
+            
         </div>
     );
 }
